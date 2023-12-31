@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigPipe Example</title>
+</head>
+<body>
+<div id="pagelet1-container" ></div>
+<div id="pagelet2-container" ></div>
+
+<script>
+    function loadPagelet(url, containerId) {
+        fetch(url)
+            .then(response => response.text())
+            .then(content => {
+                document.getElementById(containerId).innerHTML = content;
+            });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout( function (){ loadPagelet("/pagelet1", "pagelet1-container") }
+            ,1000);
+        setTimeout( function (){ loadPagelet("/pagelet2", "pagelet2-container") }
+            ,2000);
+         // loadPagelet("/pagelet1", "pagelet1-container");
+         // loadPagelet("/pagelet2", "pagelet2-container");
+    });
+</script>
+</body>
+</html>
